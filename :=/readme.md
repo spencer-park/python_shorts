@@ -1,8 +1,7 @@
-# :=
-파이썬 3.8.14부터 추가된 := 연산자(할당표현식, Assignment expression)를 알아보자.
-https://docs.python.org/3/reference/expressions.html#operator-precedence
+## := Assignment expression
+파이썬 3.8부터 추가된 := 연산자(할당표현식, Assignment expression)를 알아보자.
 
-# 변수 할당시 None이 아닌 데이터를 남기는 방법
+## 변수 할당시 None이 아닌 데이터를 남기는 방법
 `print(age = 3)`은 에러가 발생합니다.
 또한 변수 할당을 하면 그 자리는 None 상태, 즉 데이터가 없는 상태입니다. (Thonny Python으로 확인 가능)
 age = 3이란 변수 할당도 하고, 그 자리에 데이터 값도 남기려면 다음처럼 해보세요
