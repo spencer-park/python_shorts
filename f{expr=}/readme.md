@@ -3,7 +3,7 @@
 username = "Spencer"
 print(f"username = {username}")
 ```
-작성하는데 파이썬에서 지원하는 Formatting 기능을 더 잘 써봅시다. [Python 3.11.0 - 7. Input and Output](https://docs.python.org/3/tutorial/inputoutput.html#input-and-output)
+작성하는데 파이썬에서 지원하는 Formatting 기능을 더 잘 써봅시다. [Python 3.11.0 - 7. Input and Output](https://docs.python.org/3/tutorial/inputoutput.html?highlight=fancier%20output%20formatting#formatted-string-literals)
 
 
 ## f'{expr=}' 
