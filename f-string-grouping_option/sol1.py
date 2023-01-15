@@ -7,3 +7,10 @@ print(money)
 # f'{<expr>:<format_spec>}'
 print(f'{money:{"_"}d}')
 print(f'{money:{","}d}')
+
+print(f'{money:{"_"}}')
+print(f'{money:{","}}')
+
+print(f'{money:_}')
+print(f'{money:,}')
+
