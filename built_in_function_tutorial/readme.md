@@ -283,17 +283,20 @@ async def main():
 
 ---
 
-## 함수명
+## any(iterable)
 ### 1. 간단소개
-- 내용
+- 인자로 받은 iterable에 적어도 요소 하나가 True이면 True를 반환
+- iterable이 비어 있으면 False를 반환합니다.
 
 ### 2. 내장함수 추가배경
-- 내용
+- Python 2.5부터 사용 가능한 함수
+- 조건문에서 리스트(또는 다른 반복가능 객체) 요소 중 적어도 하나가 True인지(또는 True로 평가되는 값인지) 확인하는 데 사용합니다.
 
 ### 3. 매개변수
-**함수명** 
-- 매개변수
-    - 내용
+**any(iterable)** 
+- iterable
+    - 리스트, 튜플, Set와 같은 반복 가능한 단일 객체 하나를 인자로 받습니다.
+    - all과 마찬가지로 depth 1만 검사합니다.
 
 ### 4. 예제코드
 
@@ -301,14 +304,47 @@ async def main():
 - 내용
 
 ```python
+# Example 1: Using any() with a list
+my_list = [False, True, False]
+result = any(my_list)
+print(result)  # Output: True
 
+# Example 2: Using any() with a tuple
+my_tuple = (0, "", None)
+result = any(my_tuple)
+print(result)  # Output: False
+
+# Example 3: Using any() with a set
+my_set = {"", 1, 0}
+result = any(my_set)
+print(result)  # Output: True
+
+# Example 4: Using any() with an empty iterable
+empty_list = []
+result = any(empty_list)
+print(result)  # Output: False
 ```
 
 ### 5. 관련지식
-- 내용
+- bool 값
+    - Python에서 True 및 False는 진리 값을 나타내는 데 사용되는 부울 값입니다. 부울 값은 비교 연산자와 논리 연산자에 의해 반환됩니다.
+- 반복가능(Iterable) 객체
+    - Iterable은 한 번에 하나의 요소를 반환할 수 있는 Python 객체입니다
+    - List, Tuple, Set, String 등
+    - for가 가능한가? 여부로 구분해봅시다.
+- True/False로 처리되는 과정. falsy
+    - 파이썬에선 모든 데이터가 bool()함수를 통해 True/False로 변환 가능.
+    - 대체로 데이터를 True로 처리합니다. 그 외의 상황인 False는 경우가 적습니다.
+    - 대표적 예로는 False, None, 0, ""(빈 문자열), 빈 컨테이너(list, tuple 등)
+    - False로 처리되는(falsy)만 알면, 나머지는 모두 True로 처리됩니다.
 
 ### 6. 관련함수
-- 내용
+- all()
+    - all() 함수는 iterable 모든 요소가 True인 경우에만 True를 반환
+- filter()
+    - filter() 함수는 특정 조건을 만족하는 iterable에서 요소를 필터링하는 함수
+    - 조건을 만족하는 요소만 포함하는 새로운 iterable을 반환합니다.
+    - 조건을 하나라도 만족하는 데이터만 뽑는다면 filter와 any를 같이 사용해볼 수 있습니다.
 
 ---
 
