@@ -397,32 +397,52 @@ print(result)  # Output: False
 
 ---
 
-## 함수명
+## bin(x)
 ### 1. 간단소개
-- 내용
+- 정수를 이진 표현으로 바꾼 문자열로 반환합니다.
 
 ### 2. 내장함수 추가배경
 - 내용
 
 ### 3. 매개변수
-**함수명** 
-- 매개변수
-    - 내용
+**bin(x)** 
+- x:int, (req)
+    - 정수 인자 하나를 받습니다.
+- width:int, (opt)
+    - x의 이진 표현의 최소 너비를 지정하는 선택적 인수 width를 넣을 수 있습니다.
+    - 너비의 기본값은 0입니다. 0값은 출력 문자열 최소 너비 제한 없음을 의미합니다.
 
 ### 4. 예제코드
 
-#### 예시 :설명
-- 내용
-
+#### 예시 : 각 정수 값에 bin() 사용
 ```python
+# Example 1: Using bin() with a positive integer
+>>> bin(10)
+'0b1010'
 
+# Example 2: Using bin() with a negative integer
+>>> bin(-10)
+'-0b1010'
+
+# Example 3: Using bin() with the width parameter
+>>> bin(10, width=8)
+'0b00001010'
+
+# Example 4: Using bin() with a width parameter that is too small
+>>> bin(10, width=3)
+'0b1010'
 ```
 
 ### 5. 관련지식
-- 내용
+- '0b'
+    - bin()에 의해 반환된 이진 표현은 이진수임을 나타내도록 접두사 '0b'가 붙습니다.
+- '-0b'
+    - x가 음수이면 이진 표현에 음수 기호 '-'와 접두사 '0b'가 붙습니다.
 
 ### 6. 관련함수
-- 내용
+- `int()` 함수로 이진 문자열을 정수로 변환할 수 있습니다.
+
+
 
 ---
 
