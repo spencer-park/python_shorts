@@ -39,9 +39,9 @@ import 과정을 필요로 하지 않는 함수들, 언제 어디서나 **항상
 
 ### 3. 매개변수
 `abs(x)`
-`x`
-- 절대값 계산을 위한 숫자 하나. 즉 매개변수 하나가 필요합니다.
-- 인자로는 정수(int), 부동소수점(float), 복소수(complex)가 가능합니다.
+- `x`
+    - 절대값 계산을 위한 숫자 하나. 즉 매개변수 하나가 필요합니다.
+    - 인자로는 정수(int), 부동소수점(float), 복소수(complex)가 가능합니다.
 
 ### 4. 예제코드
 
@@ -66,6 +66,63 @@ print(abs(z))
 # Output: 5.0
 ```
 
-### 5. 관련 함수
+### 5. 관련함수
 유사한 모듈의 함수로 `math.fabs()`도 있습니다. 이 함수도 절대값을 반환하지만 부동소수점에서만 작동합니다.
 
+
+---
+
+## aiter(async_iterable)
+### 1. 간단소개
+- aiter()함수는 비동기 이터러블 객체(asynchronous iterable object.)에 대한 비동기 이터레이터 객체(asynchronous iterator object)를 반환합니다.
+- 위를 통해 비동기 방식으로 반복 가능한 비동기 객체를 반복할 수 있습니다.
+- 어렵다! 비동기는 뭐고, 또 Iterable, Iterator는 무슨 말이지.
+
+### 2. 내장함수 추가배경
+- Python 3.5부터 사용할 수 있습니다. 
+- 비동기 I/O연산(입출력 연산)을 작성하기 위한 환경(infra, infrastructure) 제공하는 내장된 asyncio 모듈의 일부입니다.
+
+### 3. 매개변수
+**aiter(async_iterable)**
+- `async_iterable`
+    - 비동기 반복가능(Iterable) 객체 하나를 인자로 받습니다.
+    - 비동기 이터러블은 파이썬에서 정의한 **비동기 이터레이션 프로토콜**을 지원하는 객체입니다. 
+    - 이 프로토콜에는 호출 시 **비동기 반복자(Iterator) 개체**를 반환하는 `__aiter__()` 메서드가 필요합니다.
+
+### 4. 예제코드
+
+#### 예시 : 이터러블과 함께 aiter()를 사용
+```python
+import asyncio
+
+async def my_coroutine():
+    async for i in aiter(my_async_iterable):
+        print(i)
+
+async def my_async_iterable():
+    yield 1
+    yield 2
+    yield 3
+
+asyncio.run(my_coroutine())
+```
+
+### 5. 관련지식
+- 비동기식 반복 가능 객체를 생성하려면 비동기 생성기 함수를 정의해야 합니다. 
+- 이것은 하나 이상의 `yield` 문을 포함하고 `async` 키워드로 장식된 함수입니다. 
+- 이 함수는 호출 시 비동기 iterable로 사용할 수 있는 비동기 제너레이터(generator) 객체를 반환합니다.
+
+
+### 6. 관련함수
+- `anext()` : `aiter()`에 의해 반환된 비동기 반복자 개체에서 다음값을 검색하는데 사용됩니다.
+
+### 7. 내용보완
+#### 비동기
+
+#### 반복자(Iterator), 반복가능(Iterable)
+
+#### 코루틴(coroutine)
+
+#### yield
+
+#### 제너레이터(generator)
