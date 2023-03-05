@@ -126,3 +126,62 @@ asyncio.run(my_coroutine())
 #### yield
 
 #### 제너레이터(generator)
+
+
+
+---
+
+## all(iterable)
+### 1. 간단소개
+- `all()`함수는 
+    - True 반환 : iterable의 모든 요소가 참, 또는 iterable이 비어 있으면 
+    - False 반환 : True가 아닌 상황. 즉, 하나의 요소라도 False인 경우
+
+### 2. 내장함수 추가배경
+- Python 2.5부터 사용할 수 있습니다. 
+- 주로 iterable 데이터의 모든 요소가 참(True)인지 테스트할 때 사용합니다.
+
+### 3. 매개변수
+**all(iterable)** 
+- iterable
+    - 테스트할 iterable(반복가능)단일 인자 하나를 받습니다.
+    - 필수 매개변수
+    - 단일 인자를 받아 테스트 한다는 것은 역으로 '1depth만 검사한다'는 의미이기도 합니다. `all([True, [True, False], True]) # True`
+
+### 4. 예제코드
+
+#### 예시 :이터러블 각 유형에 all()를 사용
+- iterable의 모든 요소가 참인지 테스트하는 예제
+- 리스트, 튜플, set(집합), 딕셔너리(dict) 모두 iterable합니다.
+    - 쉽게 iterable을 판단하는 방법 >>> for문이 가능한가?
+- False를 포함하고 있으면 False를 반환합니다.
+- 0을 가진 경우 False를 반환합니다. 이는 falsy(False로 처리되는 데이터)에 관하여 알아야 합니다.
+
+```python
+# Test if all elements in a list are true
+lst = [True, True, False, True]
+print(all(lst)) # False
+
+# Test if all elements in a tuple are true
+tup = (1, 2, 3, 4)
+print(all(tup)) # True
+
+# Test if all elements in a set are true
+s = {0, 1, 2, 3, 4}
+print(all(s)) # False
+
+# Test if all elements in a dictionary are true
+d = {'a': True, 'b': True, 'c': False}
+print(all(d.values())) # False
+```
+
+### 5. 관련지식
+- 빈 iterable 데이터는 테스트할 요소가 없습니다.
+- 이 경우 all() 함수는 기본적으로 True를 반환하도록 설계되어있습니다.
+
+### 6. 관련함수
+- all() 함수는 and 연산과 처리방식이 같습니다. 모든 요소가 True여야 True를 반환합니다.
+- 반대로 or 연산과 같은 처리를 하는 any() 함수가 있는데, 하나라도 True면 True를 반환합니다.
+    - all(), and : 하나라도 False라면 False
+    - any(), or : 하나라도 True라면 True
+
