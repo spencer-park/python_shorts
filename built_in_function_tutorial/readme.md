@@ -188,32 +188,98 @@ print(all(d.values())) # False
 
 ---
 
-## 함수명
+## awaitable anext(async_iterator), awaitable anext(async_iterator, default)
 ### 1. 간단소개
-- 내용
+- 다른 빌트인 함수인 next()의 비동기 버전
+- 비동기 이터레이터에서 다음 항목을 검색합니다.
+- next()와 다르게 anext()는 코루틴(coroutine)이라서 다음 값이 검색되는 걸 대기(await)해야 합니다.
 
 ### 2. 내장함수 추가배경
 - 내용
 
 ### 3. 매개변수
-**함수명** 
-- 매개변수
-    - 내용
+**awaitable anext(async_iterator), awaitable anext(async_iterator, default)** 
+- async_iterator
+    - 다음 항목을 검색할 비동기 반복자(async_iterator) 객체입니다.
+- default
+    - Optional
+    - 반복자가 소진된 경우(=받아올 다음 항목값이 없을 경우에) 반환할 기본값을 정합니다.
+    - default 값을 정해주지 않으면 `StopAsyncIteration` 예외가 발생합니다.
+
 
 ### 4. 예제코드
 
-#### 예시 :설명
-- 내용
-
+#### 예시 : 비동기 생성 함수 작성
+- 예제에서 my_async_generator() 함수는 3개의 값(항목)을 생성하는 비동기 생성기로 정의됩니다.
+- main() 함수는 비동기 for 루프를 사용하여 생성기가 반환한 항목을 반복합니다.
 ```python
+async def my_async_generator():
+    yield 1
+    yield 2
+    yield 3
+
+async def main():
+    async for item in my_async_generator():
+        print(item)
+
+asyncio.run(main())
 
 ```
 
-### 5. 관련지식
+#### 예시 : +anext() 사용
+- 위 예제에서 anext()를 사용해보는 예제입니다.
+- 비동기 이터레이터에서 항목을 수동으로 검색하려면 다음처럼 사용합니다.
+- `my_async_iterator()` 함수는 3개의 값(항목)을 생성하는 비동기 반복자 함수로 정의했습니다.
+- main()함수는 anext()함수를 사용하여 반복자에서 각 항목을 수동으로 검색하고 이를 출력(print)합니다.
+```python
+async def my_async_iterator():
+    for i in range(3):
+        yield i
+
+async def main():
+    async_iterator = my_async_iterator().__aiter__()
+    try:
+        while True:
+            item = await anext(async_iterator)
+            print(item)
+    except StopAsyncIteration:
+        pass
+
+asyncio.run(main())
+```
+
+#### 예시 : default를 사용하는 코드 포함
 - 내용
 
-### 6. 관련함수
-- 내용
+```python
+import asyncio
+
+async def async_generator():
+    for i in range(3):
+        yield i
+
+async def main():
+    async_iterator = async_generator().__aiter__()
+    print(await anext(async_iterator))  # prints 0
+    print(await anext(async_iterator))  # prints 1
+    print(await anext(async_iterator))  # prints 2
+    try:
+        print(await anext(async_iterator))  # raises StopAsyncIteration
+    except StopAsyncIteration:
+        print("Iterator is exhausted")
+
+    default_value = "Iterator is exhausted"
+    async_iterator = async_generator().__aiter__()
+    print(await anext(async_iterator, default_value))  # prints 0
+    print(await anext(async_iterator, default_value))  # prints 1
+    print(await anext(async_iterator, default_value))  # prints 2
+    print(await anext(async_iterator, default_value))  # prints "Iterator is exhausted"
+```
+
+### 5. 관련지식
+- `anext()`를 사용하기 위해서는 
+    - 비동기 제너레이터, 비동기 이터레이터, 코루틴 등 파이썬 비동기 프로그래밍 개념과 이에 대한 기본적인 이해가 필요합니다.
+    - `async for` 반복문이라는 비동기 반복자 순회 문법이 있습니다.
 
 ---
 
