@@ -405,7 +405,7 @@ print(result)  # Output: False
 - 내용
 
 ### 3. 매개변수
-**bin(x)** 
+**** 
 - x:int, (req)
     - 정수 인자 하나를 받습니다.
 - width:int, (opt)
